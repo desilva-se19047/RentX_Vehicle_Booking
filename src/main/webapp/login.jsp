@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div className ="login-container">
-      <h1>RenteX Vehicle Booking</h1>
+      <h1> WELCOME RenteX Vehicle Booking !</h1>
       <button className ="login-button" onClick={loginWithAuth0}>Login</button>
       <p>Don't have an account? <a href={`https://${auth0Domain}/signup`}>Create Account</a></p>
     </div>
