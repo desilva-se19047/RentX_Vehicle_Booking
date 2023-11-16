@@ -14,15 +14,17 @@ body{
   background-image: url(01.jpg);
   background-position: center;
   background-size: cover;
-  padding-top: 35px;
-  padding-left: 8%;
-  padding-right: 8%;
+  padding-top: 0px;
+  padding-left: 0%;
+  padding-right: 0%;
 }
 nav{
   padding: 10px 0;
+  padding-left:6%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #575757;
 }
 .logo a{
   font-size: 50px;
@@ -33,7 +35,8 @@ span{
 }
 .content{
   margin-top: 8%;
-  max-width: 600px;
+  max-width: 750px;
+  padding-left: 8%;
 }
 .content h2{
   font-size: 50px
@@ -41,19 +44,19 @@ span{
 .content h3{
   font-size: 40px
 }
-.content h4{
-  font-size: 20px
-}
 .content p{
   margin-top: 10px;
   line-height: 25px;
+}
+.content h4{
+	font-size: 20px;
 }
 a{
   color: #fff;
 }
 .link {
   margin-top: 30px;
-  margin-bottom: 40px;
+  margin-bottom: 45px;
 }
 .login{
   color: #000;
@@ -68,7 +71,7 @@ a{
   font-size: 30px;
 }
 .link .login:hover{
-  background: transparent;
+  background-color: #575757;
   border: 1px solid #fff;
   color: #fff;
 }
