@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
+  <div class="container1">
     <nav>
       <div class="logo">
         <a href="#"><b>Rent</b><span><b>_X.</b></span></a>
