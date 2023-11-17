@@ -44,7 +44,7 @@ span{
   font-size: 50px
 }
 .content h3{
-  font-size: 40px
+  font-size: 40px;
 }
 .content p{
   margin-top: 10px;
@@ -137,6 +137,7 @@ strong {
 .reservation-form h2{
 	text-align: center;
 	padding: 10px;
+	padding-bottom: 20px;
 }
 
 .reservation-form .row {
@@ -146,6 +147,7 @@ strong {
   flex-wrap: wrap;
   margin: 0 -16px;
 }
+
 .form-group {
     margin-bottom: 15px;
     -ms-flex: 50%; 
