@@ -5,7 +5,8 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Home</title>
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/home.css">
+<link rel="stylesheet" href="../css/nav.css">
 </head>
 <body>
   <div class="container2">
