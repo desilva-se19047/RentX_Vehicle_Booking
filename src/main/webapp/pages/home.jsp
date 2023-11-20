@@ -10,13 +10,11 @@
 </head>
 <body>
   <div class="container2">
-    <header>
     <nav>
       <div class="logo">
         <a href="#"><b>Rent</b><span><b>_X.</b></span></a>
       </div>
     </nav>
-    </header>
     <div class="content">
       <h3>Hello, Tom !</h3>
       <div class="user-info">

@@ -13,13 +13,11 @@
 </head>
 <body>
   <div class="container1">
-    <header>
     <nav>
       <div class="logo">
         <a href="#"><b>Rent</b><span><b>_X.</b></span></a>
       </div>
     </nav>
-    </header>
     <div class="content">
       <h2>Welcome !</h2>
       <h3>Rent_X Vehicle Booking</h3>
