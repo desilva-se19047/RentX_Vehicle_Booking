@@ -13,7 +13,7 @@
 <%
     String code = request.getParameter("code");
     String sessionState = request.getParameter("session_state");
-  //Initialize a Properties object
+  	//Initialize a Properties object
   		Properties properties = new Properties();
   		//Load the properties file
   		try {
@@ -28,7 +28,7 @@
     String url = properties.getProperty("tokenEndpoint");
     String client_Id = properties.getProperty("client_id");
     String client_secret = properties.getProperty("client_secret");
-    String redirect_url = properties.getProperty("baseurl")+"/VehicleServiceSystem/auth.jsp";
+    String redirect_url = properties.getProperty("baseurl")+"/RentX_Vehicle_Booking_App/authorize.jsp";
 
     // Define the request body parameters
     String postData = "code=" + URLEncoder.encode(code, "UTF-8");
