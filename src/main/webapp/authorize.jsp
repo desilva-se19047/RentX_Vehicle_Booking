@@ -1,104 +1,95 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ page import="java.io.BufferedReader" %>
-<%@ page import="java.io.InputStreamReader" %>
-<%@ page import="java.net.HttpURLConnection" %>
-<%@ page import="java.net.URL" %>
-<%@ page import="java.io.OutputStream" %>
-<%@ page import="java.net.URLEncoder" %>
-<%@ page import="org.json.JSONObject" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"   pageEncoding="ISO-8859-1"%>
+<%@ page import="java.io.FileInputStream, java.io.IOException, java.util.Properties" %>
 <%@ page import="java.io.InputStream, java.io.IOException" %>
-<%@ page import="java.util.Properties" %>
-
 <%
-    String code = request.getParameter("code");
-    String sessionState = request.getParameter("session_state");
-  	//Initialize a Properties object
-  		Properties properties = new Properties();
-  		//Load the properties file
-  		try {
-  			 InputStream inputStream = application.getResourceAsStream("/WEB-INF/classes/application.properties");
-  			 properties.load(inputStream);
-  			} catch (IOException e) {
-  			    e.printStackTrace();
-  			}
-  		
-    // Define the URL
-    
-    String url = properties.getProperty("tokenEndpoint");
-    String client_Id = properties.getProperty("client_id");
-    String client_secret = properties.getProperty("client_secret");
-    String redirect_url = properties.getProperty("baseurl")+"/RentX_Vehicle_Booking_App/authorize.jsp";
+	
+		String code = request.getParameter("code");
+	
+	// Retrieve the 'session_state' parameter from the URL
+		String sessionState = request.getParameter("session_state");
+	
+		 // Initialize a Properties object
+	    Properties properties = new Properties();
 
-    // Define the request body parameters
-    String postData = "code=" + URLEncoder.encode(code, "UTF-8");
-    postData += "&grant_type=authorization_code";
-    postData += "&client_id=" + URLEncoder.encode(client_Id, "UTF-8");
-    postData += "&client_secret=" + URLEncoder.encode(client_secret, "UTF-8");
-    postData += "&redirect_uri=" + URLEncoder.encode(redirect_url, "UTF-8");
+	    // Load the properties file
+	    try {
+	        InputStream inputStream = application.getResourceAsStream("/WEB-INF/classes/application.properties");
+	        properties.load(inputStream);
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	
 
-    // Create a URL object and open a connection
-    URL obj = new URL(url);
-    HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-    // Set the HTTP request method to POST
-    con.setRequestMethod("POST");
-
-    // Set the request headers
-    con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-
-    // Enable input/output streams
-    con.setDoOutput(true);
-
-    // Write the POST data to the output stream
-    try (OutputStream os = con.getOutputStream()) {
-        byte[] input = postData.getBytes("UTF-8");
-        os.write(input, 0, input.length);
-    }
-
-    // Get the response code
-    int responseCode = con.getResponseCode();
-
-    // Read the response data
-    if (responseCode == HttpURLConnection.HTTP_OK) {
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
-            String inputLine;
-            StringBuilder responseData = new StringBuilder();
-
-            while ((inputLine = in.readLine()) != null) {
-                responseData.append(inputLine);
-            }
-
-            // Handle the response data here
-            String responseDataStr = responseData.toString();
-            
-            // Parse the response data as JSON
-            JSONObject jsonResponse = new JSONObject(responseDataStr);
-
-            // Extract access_token and id_token
-            String access_token = jsonResponse.getString("access_token");
-            String id_token = jsonResponse.getString("id_token");
-
-            // Store tokens in session attributes
-            request.getSession().setAttribute("access_token", access_token);
-            request.getSession().setAttribute("id_token", id_token);
-
-            // Redirect to the home.jsp page
-            response.sendRedirect("pages/home.jsp");
-        }
-    } else {
-        // Handle errors here
-        response.sendRedirect("pages/login.jsp");
-    }
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Authorize</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <script type="text/javascript">
+        // Function to make a POST request
+        function makePostRequest() {
+            // Define the URL
+            var url = '<%= properties.getProperty("tokenEndpoint") %>';
 
+            var code = encodeURIComponent('<%= code %>');
+            var state = encodeURIComponent('<%= sessionState %>');
+            localStorage.setItem('state', state);
+            var sessionState = encodeURIComponent('<%= sessionState %>');
+            var client_Id = '<%= properties.getProperty("client_id") %>';
+            var client_secret = '<%= properties.getProperty("client_secret") %>';
+           
+            var redirect_uri =  '<%= properties.getProperty("baseurl") %>' + '/RentX_Vehicle_Booking_App/authorize.jsp';
+          	//console.log(redirect_uri);
+            
+            // const introspectionEndpoint = 'https://api.asgardeo.io/t/learnmasith/oauth2/introspect';
+           // const clientCredentials = btoa(`${client_Id}:${client_secret}`);
+
+
+            // Define the request body parameters
+            var bodyParams = new URLSearchParams();
+            bodyParams.append('code', code);
+            bodyParams.append('grant_type', 'authorization_code');
+            bodyParams.append('client_id', client_Id);
+            bodyParams.append('client_secret', client_secret);
+            bodyParams.append('redirect_uri', redirect_uri);
+
+            // Define the request options
+            var requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: bodyParams.toString() // Convert bodyParams to a string
+            };
+
+            // Make the POST request using jQuery AJAX
+            $.ajax(url, requestOptions)
+                .done(function (data) {
+                  	// Handle the response data here
+                    console.log(data.access_token);
+                    var access_token  = data.access_token;
+                   	var id_token = data.access_token;
+                   	localStorage.setItem('access_token', access_token);
+                   	localStorage.setItem('id_token', id_token);
+            	    window.location.href = "pages/home.jsp";
+            	    
+                   	
+            	    
+            	    
+                })	
+                .fail(function (error) {
+                	// Handle any errors here
+                	console.error('Error:', error);
+                	window.location.href = "pages/login.jsp";
+                	});
+
+                
+        }
+
+        // Call the function to make the POST request
+        makePostRequest();
+    </script>
 </body>
 </html>

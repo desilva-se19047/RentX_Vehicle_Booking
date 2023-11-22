@@ -1,4 +1,4 @@
-package java.com.user.service.dao;
+package com.userService.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
