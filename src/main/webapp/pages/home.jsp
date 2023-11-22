@@ -178,12 +178,12 @@
 	            // Handle any errors here
 	            console.error('Error:', errorThrown);
 	            alert("Error in the authorization. Login again!");
-	            window.location.href = "login.jsp";
+	            window.location.href = "../login.jsp";
 	        });
 	    }
 	    
 	    else{
-	    	window.location.href = "login.jsp";	
+	    	window.location.href = "../login.jsp";	
 	    }
 	</script>
 	
@@ -202,7 +202,7 @@
 		const infoUrl = '<%= properties.getProperty("userinfoEndpoint") %>';
 		const client_Id = '<%= properties.getProperty("client_id") %>';
 		const client_secret = '<%= properties.getProperty("client_secret") %>';
-		const postLogoutRedirectUri = '<%= properties.getProperty("baseurl") %>' + '/RentX_Vehicle_Booking_App/pages/login.jsp';
+		const postLogoutRedirectUri = '<%= properties.getProperty("baseurl") %>' + '/RentX_Vehicle_Booking_App/login.jsp';
 		const introspectionEndpointUrl ='<%= properties.getProperty("introspectionEndpoint") %>';	
 	</script>
 	
@@ -215,25 +215,54 @@
       <div class="logo">
         <a href="#"><b>Rent</b><span><b>_X.</b></span></a>
       </div>
+      <div>
+      	<a href="#"><span>Home</span></a>
+      	<a href="#service"><span>Services</span></a>
+      	<a href="#history"><span>History</span></a>
+      	<a href="#info"><span>Profile</span></a>
+      </div>      
     </nav>
   </section>
   
   <section id="info">
     <div class="content">
-      <h3>Hello, Tom !</h3>
-      <div class="user-info">
-        <ul>
-            <li>Email : <span id = 'email'></span></li>
-  			<li>Contact: <span id = 'phone'></span></li>
-        </ul>
-      </div>
-      <div class="actions">
-  		<form id="logout-form" action="<%= properties.getProperty("logoutEndpoint") %>" method="POST">
-        	<input type="hidden" id="client-id" name="client_id" value="">
-        	<input type="hidden" id="post-logout-redirect-uri" name="post_logout_redirect_uri" value="">
-        	<input type="hidden" id="state" name="state" value="">
-        	<button type="submit">Logout</button>
-    	</form>
+       <div class="success">
+	      <div class="row align-items">
+	        <div class="col">
+	          <div class="form-h">
+	          	<%
+				String message = (String) request.getAttribute("successMessage");
+	          	System.out.println(message);
+	          	if(message!=null){
+				%>
+				<div class="success-message">
+				        <%= message %>
+				</div>
+				<script>
+					document.addEventListener('DOMContentLoaded', function() {
+					var successMessage = '<%= message %>';
+					alert(successMessage);
+					});
+				</script>
+				<% } %>
+      			<h3>Hello...!</h3>
+			    <div class="user-info">
+			        <ul>
+			            <li>Email : <span id = 'email'></span></li>
+			  			<li>Contact: <span id = 'phone'></span></li>
+			        </ul>
+			    </div>
+			    <div class="actions">
+			  		<form id="logout-form" action="<%= properties.getProperty("logoutEndpoint") %>" method="POST">
+			        	<input type="hidden" id="client-id" name="client_id" value="">
+			        	<input type="hidden" id="post-logout-redirect-uri" name="post_logout_redirect_uri" value="">
+			        	<input type="hidden" id="state" name="state" value="">
+			        	<button type="submit">Logout</button>
+			    	</form>
+			 	</div>
+ 	  		 </div>
+ 	  	  </div>
+ 	    </div>
  	  </div>
     </div>
   </section>
@@ -244,35 +273,29 @@
   	
         <h2>Schedule Booking</h2>
         <form method="post" id="contactForm" name="contactForm">
+          
           <div class="row">
-        	<div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group">
-                <label for="contactNumber">Contact Number:</label>
-                <input type="tel" id="contactNumber" name="contactNumber" required>
-            </div>
             <div class="form-group">
                 <label for="date">Date of Service:</label>
                 <input type="date" id="date" name="date" min="<%= java.time.LocalDate.now() %>"  required>
             </div>
-          </div>
-          <div class="row">
             <div class="form-group">
                 <label for="time">Time:</label>
-                <select id="time" name="time" required>
-                    <option selected>Choose...</option>
-                    <option value="10 AM">10 AM</option>
-                    <option value="11 AM">11 AM</option>
-                    <option value="12 PM">12 PM</option>
-                </select>
+                <input type="time" id="time" name="time" required>
+            </div>
+          </div>
+          
+          <div class="row">           
+            <div class="form-group">
+                <label for="vehicle">Vehicle:</label>
+                <select id="vehicle" name="vehicle" required>
+					<option selected>Choose...</option>
+					<option value="AD-011"> Suzuki-Alto(2020)</option>
+					<option value="BC-022">Dolphin(2011)</option>
+					<option value="FGE-004">Suzuki-WagonR(2015)</option>
+					<option value="CQA-084">Toyota-Prius(2012)</option>
+					<option value="AAA-015">Honda-Fit(2020) </option>
+				</select>
             </div>
             <div class="form-group">
                 <label for="location">Location:</label>
@@ -306,33 +329,26 @@
                 </select>
             </div>
           </div>
-          <div class="row">
-            <div class="form-group">
-                <label for="vehicle">Vehicle:</label>
-                <select id="vehicle" name="vehicle" required>
-					<option selected>Choose...</option>
-					<option value="AD-011"> Suzuki-Alto(2020)</option>
-					<option value="BC-022">Dolphin(2011)</option>
-					<option value="FGE-004">Suzuki-WagonR(2015)</option>
-					<option value="CQA-084">Toyota-Prius(2012)</option>
-					<option value="AAA-015">Honda-Fit(2020) </option>
-				</select>
-            </div>
+          
+          <div class="row">            
             <div class="form-group">
                 <label for="mileage">Current Mileage:</label>
-                <input type="number" id="mileage" name="mileage" required>
+                <input type="number" id="mileage" name="mileage" step="1" min="1" pattern="\d+" placeholder="Enter the total mileage" required>
             </div>
+            <input type="hidden" id="usernameField" name="usernameField" value="" >
           </div>
+          
           <div class="row">
             <div class="form-group">
                 <label for="message">Message:</label>
                 <textarea id="message" name="message" cols="20" rows="6"  placeholder="Write your message"></textarea>
             </div>
           </div>
-            <div class="form-group-1">
-                <button type="submit" class="login-button">Submit</button>
-                <button type="button" class="login-button" onclick="handleReset()">Reset</button>
-            </div>
+          
+          <div class="form-group-1">
+              <button type="submit" value="Submit" id="submit" name="submit" class="login-button">Submit</button>
+              <button type="button" class="login-button" onclick="handleReset()">Reset</button>
+          </div>
         </form>
     </div>
     </section>
@@ -344,15 +360,12 @@
 	
 	<div class="foroms">
 		<form class="mb-5" method="post" id="myForm"  action="?showPast=true#history" onclick="document.getElementById('past').style.display='block'" >
-			<input type="hidden" id="usernameField2" name="usernameField2" value="" >
-				              
+			<input type="hidden" id="usernameField2" name="usernameField2" value="" >				              
 			<input type="submit" class="res" id="pastRes" name= "pastRes" value="Past Reservation" >
 		</form>
 		<br>
-		<form class="mb-5" method="post" id="myForm" action="?showFuture=true#history" onclick="document.getElementById('future').style.display='block'"  >
-		
-			<input type="hidden" id="usernameField3" name="usernameField3" value="" >
-				              
+		<form class="mb-5" method="post" id="myForm" action="?showFuture=true#history" onclick="document.getElementById('future').style.display='block'"  >		
+			<input type="hidden" id="usernameField3" name="usernameField3" value="" >				              
 			<input type="submit" class="res" id="futureRes" name="futureRes" value= "Future Reservation" >
 		</form>
 	</div>
