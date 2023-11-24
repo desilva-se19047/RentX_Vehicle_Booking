@@ -11,8 +11,8 @@ body{
   
 }
 
-.container2{
-  width: 100%;
+#info{
+  width: 90%;
   height: 100%;
   background-color: #000000;
   background-position: center;
@@ -22,7 +22,7 @@ body{
   padding-right: 0%;
 }
 .content{
-  margin-top: 8%;
+  margin-top: 6%;
   max-width: 750px;
   padding-left: 8%;
 }
@@ -65,15 +65,40 @@ li {
 strong {
   font-weight: bold;
 }
+.link {
+    margin-top: 30px;
+    margin-bottom: 45px;
+    width: 70px;
+  }
+  .link button{
+    color: #000;
+    text-decoration: none;
+    background: #fff;
+    padding: 10px 50px;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: 0.5s;
+  }
+  .link button {
+    font-size: 30px;
+  }
+  .link button:hover{
+    background-color: #575757;
+    border: 1px solid #fff;
+    color: #fff;
+  }
 
+#service{
+    margin-top: -400px;
+    margin-left: 750px;
+}
 .reservation-form {
     background-color: #575757;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 600px;
-    margin-top: -400px;
-    margin-left: 750px;
+    
 }
 
 .reservation-form h2{
@@ -119,19 +144,167 @@ input, select, textarea {
     box-sizing: border-box;
 }
 
-button {
+.form-group-1 button {
     background-color: rgb(0, 0, 0);
     color: #fff;
     padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
+    border: 2px solid #fff;
+    border-radius: 25px;
     cursor: pointer;
     margin-left: 20px;
     margin-right: 20px;
+    font-size: 18px;
 }
 
-button:hover {
+.form-group-1 button:hover {
     background-color: #575757;
-  	border: 1px solid #fff;
+  	border: 2px solid #fff;
   	color: #fff;
+}
+
+.select-history{
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+#history{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#history h2{
+    text-align: center;
+    color:#ffff00;
+}
+
+#history p{
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.res{
+    margin-top: 5px;
+    margin-bottom: 45px;
+    align-items: center;
+    color: #000;
+    text-decoration: none;
+    background: #fff;
+    padding: 10px 50px;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: 0.5s;
+    font-size: 30px;
+    width: 1000px;
+}
+  .res:hover {
+    background-color: #575757;
+    border: 1px solid #fff;
+    color: #fff;
+  }
+
+  .foroms {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cancelbtn, .deletebtn{
+    margin-top: 5px;
+    margin-bottom: 45px;
+    margin-left: 12px;
+    align-items: center;
+    color: #000;
+    text-decoration: none;   
+    padding: 10px 50px;
+    font-weight: bold;
+    transition: 0.5s;
+    font-size: 20px;
+    width: 200px; 
+    border-radius: 30px;
+    border: 3px solid #fff;
+}
+
+.cancelbtn:hover, .deletebtn:hover {
+    background-color: #575757;
+    border: 3px solid #fff;
+    color: #fff;
+  }
+
+  .cancelbtn{
+    background:#804000;
+  }
+
+.deletebtn{
+    background: #aa0a0a;
+}
+
+#id01 .modal{
+	justify-content: center;
+}
+
+.delete{
+    align-items: center;
+    color: #000;
+    text-decoration: none;   
+	padding: 8px;
+    font-weight: bold;
+    transition: 0.5s;
+    font-size: 20px;
+    width: 90px; 
+    background: #aa0a0a;
+    justify-content:center;
+    margin: 5px 0px 5px 20px;
+    border-radius: 30px;
+    border: 3px solid #fff;
+}
+
+.delete:hover{
+    background-color: #575757;
+    border: 3px solid #fff;
+    color: #fff;
+  }
+  
+  td{
+  	height: flex;
+  }
+  th{
+   	height: 50px;
+  	font-size: 20px;
+  	background-color: #804000;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    width:150px;
+}
+
+tr:hover {
+    background-color: #575757;
+}
+  
+  table{
+  	font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  footer {
+    background-color: #575757;
+    padding: 20px;
+    text-align: center;
+}
+
+.medium a{
+	color: #ffff00;
+  	text-decoration: none;
+  	font-size: 20px;
+}
+
+.medium a:hover{
+  text-decoration: underline;
 }

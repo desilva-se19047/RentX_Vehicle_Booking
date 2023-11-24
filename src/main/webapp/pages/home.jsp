@@ -115,6 +115,8 @@
 	 }
 		
 %>
+
+
     
 <!DOCTYPE html>
 <html>
@@ -149,10 +151,14 @@
 	            var email = response.email;
 	            var parts = given_name.split(' ');
 	            var firstName = parts[0];
-	            document.getElementById('givenName').textContent = given_name;
+	            var address = response.address;
+	            var country = address.country;
+	            console.log(country);
+	            document.getElementById('givenName').textContent = response;
 	            document.getElementById('name').textContent = firstName;
 	            document.getElementById('email').textContent = email;
 	            document.getElementById('phone').textContent = phone;
+	            document.getElementById('country').textContent = country;
 	            
 	            document.getElementById('submit').addEventListener('click', function () {
 	                // Set the username as a hidden field value in the form
@@ -215,55 +221,36 @@
       <div class="logo">
         <a href="#"><b>Rent</b><span><b>_X.</b></span></a>
       </div>
-      <div>
-      	<a href="#"><span>Home</span></a>
-      	<a href="#service"><span>Services</span></a>
-      	<a href="#history"><span>History</span></a>
-      	<a href="#info"><span>Profile</span></a>
+      <div class="menu">
+      	<a href="#"><b>Home</b></a>
+      	<a href="#service"><b>Scheduling</b></a>
+      	<a href="#history"><b>History</b></a>
+      	<a href="#info"><b>Profile</b></a>
       </div>      
     </nav>
   </section>
   
   <section id="info">
-    <div class="content">
-       <div class="success">
-	      <div class="row align-items">
-	        <div class="col">
-	          <div class="form-h">
-	          	<%
-				String message = (String) request.getAttribute("successMessage");
-	          	System.out.println(message);
-	          	if(message!=null){
-				%>
-				<div class="success-message">
-				        <%= message %>
-				</div>
-				<script>
-					document.addEventListener('DOMContentLoaded', function() {
-					var successMessage = '<%= message %>';
-					alert(successMessage);
-					});
-				</script>
-				<% } %>
-      			<h3>Hello...!</h3>
-			    <div class="user-info">
-			        <ul>
-			            <li>Email : <span id = 'email'></span></li>
-			  			<li>Contact: <span id = 'phone'></span></li>
-			        </ul>
-			    </div>
-			    <div class="actions">
-			  		<form id="logout-form" action="<%= properties.getProperty("logoutEndpoint") %>" method="POST">
-			        	<input type="hidden" id="client-id" name="client_id" value="">
-			        	<input type="hidden" id="post-logout-redirect-uri" name="post_logout_redirect_uri" value="">
-			        	<input type="hidden" id="state" name="state" value="">
-			        	<button type="submit">Logout</button>
-			    	</form>
-			 	</div>
- 	  		 </div>
- 	  	  </div>
- 	    </div>
- 	  </div>
+    <div class="content">	          	
+    	<h3>Hello...!</h3>
+    	<h2 id="givenName"></h2>
+	    <div class="user-info">
+	        <ul>
+	            <li>Email : <span id = 'email'></span></li>
+	  			<li>Contact: <span id = 'phone'></span></li>
+	  			<li>Country: <span id = 'country'></span></li>
+	        </ul>
+	    </div>
+	    <div class="actions">
+	  		<form id="logout-form" action="<%= properties.getProperty("logoutEndpoint") %>" method="POST">
+	        	<input type="hidden" id="client-id" name="client_id" value="">
+	        	<input type="hidden" id="post-logout-redirect-uri" name="post_logout_redirect_uri" value="">
+	        	<input type="hidden" id="state" name="state" value="">
+	        	<div class="link">
+                	<button type="submit">Logout</button>
+            	</div>
+	    	</form>
+	 	</div>
     </div>
   </section>
   
@@ -346,27 +333,26 @@
           </div>
           
           <div class="form-group-1">
-              <button type="submit" value="Submit" id="submit" name="submit" class="login-button">Submit</button>
-              <button type="button" class="login-button" onclick="handleReset()">Reset</button>
+              <button type="submit" value="Submit" id="submit" name="submit" class="login-button"><h3>Submit</h3></button>
           </div>
         </form>
     </div>
     </section>
     
     <section id = "history">
-	<div class="history-title">
-		<h1>See the Reservations. Click below</h1>
+	<div class="select-history">
+		<h2>See the Reservations. Click below</h2>
 	</div>
 	
 	<div class="foroms">
-		<form class="mb-5" method="post" id="myForm"  action="?showPast=true#history" onclick="document.getElementById('past').style.display='block'" >
-			<input type="hidden" id="usernameField2" name="usernameField2" value="" >				              
-			<input type="submit" class="res" id="pastRes" name= "pastRes" value="Past Reservation" >
-		</form>
-		<br>
-		<form class="mb-5" method="post" id="myForm" action="?showFuture=true#history" onclick="document.getElementById('future').style.display='block'"  >		
+		<form class="mb" method="post" id="myForm" action="?showFuture=true#history" onclick="document.getElementById('future').style.display='block'"  >		
 			<input type="hidden" id="usernameField3" name="usernameField3" value="" >				              
 			<input type="submit" class="res" id="futureRes" name="futureRes" value= "Future Reservation" >
+		</form>
+		<br>
+		<form class="mb" method="post" id="myForm"  action="?showPast=true#history" onclick="document.getElementById('past').style.display='block'" >
+			<input type="hidden" id="usernameField2" name="usernameField2" value="" >				              
+			<input type="submit" class="res" id="pastRes" name= "pastRes" value="Past Reservation" >
 		</form>
 	</div>
 	
@@ -384,7 +370,7 @@
 	            <th>Time</th>
 	            <th>Location</th>
 	            <th>Mileage</th>
-	            <th>Vehicle Number</th>
+	            <th>Vehicle_No</th>
 	            <th>Message</th>
 	            <th>Action</th>
 	        </tr>
@@ -417,13 +403,15 @@
 	            <td><%= mileage %></td>
 	            <td><%= vehicleNo %></td>
 	            <td><%= message0 %></td>
-	            <td><button onclick="document.getElementById('id01').style.display='block';  document.getElementById('bookingID').value = <%= bookingId %>;" class="delete">Delete</button></td>
+	            <td><a href="#id01"><button onclick="document.getElementById('id01').style.display='block';  document.getElementById('bookingID').value = <%= bookingId %>;" class="delete">Delete</button></a></td>
 	        </tr>
 	        <% 
 	            }}
 	            
 	    %>
 	    </table>
+	    <br>
+	    <br>
 	</div>
 	<% } %>
 	
@@ -438,7 +426,7 @@
 		            <th>Time</th>
 		            <th>Location</th>
 		            <th>Mileage</th>
-		            <th>Vehicle Number</th>
+		            <th>Vehicle_No</th>
 		            <th>Message</th>
 		        </tr>
 		        <%
@@ -476,6 +464,8 @@
 		            
 		    %>
 		    </table>
+		    <br>
+		    <br>
 		    
 	</div>
 	<% } %>
@@ -484,10 +474,9 @@
 	
 	
 	<div id="id01" class="modal">
-	  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
 	  <form class="modal-content" method="post" >
 	    <div class="container2">
-	      <h1>Delete Reservation</h1>
+	      <h2>Delete Reservation</h2>
 	      <p>Are you sure you want to delete your reservation?</p>
 	    	<input type="hidden" id="bookingID" name="bookingID" value="" >
 	      <div class="clearfix">
@@ -501,13 +490,23 @@
 	</section>
 	
 	
+	<footer>
+        <p>Rent_X &copy; 2023. Created by Prasadini De Silva.</p>
+        <br>
+        <p>Discover the process behind the creation of this by reading my article.</p> 
+        <div class="medium">
+        <h4><a href="https://medium.com/@deprasadini/rent-x-develop-a-web-application-using-asgardeo-authentication-5f394279bcd4">medium.com</a></h4>
+    	</div>
+    </footer>
+	
+	
 	<script type="text/javascript">
 		// target all anchor link elements
 		const links = document.querySelectorAll('nav a');
 	
 		// Function to scroll to a specific section based on the URL hash
 		function scrollToSection() {
-		    if (window.location.hash === '#service') {
+    if (window.location.hash === '#service') {
 		        var servicesSection = document.getElementById('service');
 		        if (servicesSection) {
 		            servicesSection.scrollIntoView({ behavior: 'smooth' });
@@ -520,11 +519,6 @@
 		    scrollToSection();
 		};
 	</script>
-    
-    <script>
-        function handleReset() {
-            document.querySelector("form").reset();
-        }
-    </script>
+	
 </body>
 </html>

@@ -1,16 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#home {
+    background-color: #575757;
+}
+
 nav{
   padding: 10px 0;
-  padding-left:6%;
+  padding-left:8%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   background-color: #575757;
 }
+
 .logo a{
   font-size: 50px;
   text-decoration: none;
+  color: #fff;
 }
 span{
   color: #f9004d;
+}
+
+.menu{
+	margin-right: 30px;
+	padding-right:8%;
+}
+.menu a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #ffff00; 
+    font-size: 25px;
+    transition: color 0.3s ease; 
+}
+
+.menu a:hover {
+    color:  #f9004d; 
+    text-decoration: underline;
 }
