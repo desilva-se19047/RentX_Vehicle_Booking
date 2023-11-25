@@ -130,11 +130,12 @@
 	<script type="text/javascript">
 		//set the user info
 		const accessToken = localStorage.getItem('access_token');
+		
 	    
 	    if(accessToken){
 	    	
 	    var settings = {
-	        "url": infoUrl,
+	        "url": 'https://api.asgardeo.io/t/orge2kzg/oauth2/userinfo',
 	        "method": "GET",
 	        "timeout": 0,
 	        "headers": {
@@ -144,21 +145,17 @@
 	
 	    $.ajax(settings)
 	        .done(function (response) {
-	            console.log(response);
-	            var username =  response.username;
-	            var given_name = response.given_name;
+	            
 	            var phone = response.phone_number;
 	            var email = response.email;
-	            var parts = given_name.split(' ');
-	            var firstName = parts[0];
 	            var address = response.address;
 	            var country = address.country;
-	            console.log(country);
-	            document.getElementById('givenName').textContent = response;
-	            document.getElementById('name').textContent = firstName;
+	            var username =  response.username;
+	
 	            document.getElementById('email').textContent = email;
 	            document.getElementById('phone').textContent = phone;
 	            document.getElementById('country').textContent = country;
+	  	
 	            
 	            document.getElementById('submit').addEventListener('click', function () {
 	                // Set the username as a hidden field value in the form
@@ -233,12 +230,11 @@
   <section id="info">
     <div class="content">	          	
     	<h3>Hello...!</h3>
-    	<h2 id="givenName"></h2>
 	    <div class="user-info">
 	        <ul>
-	            <li>Email : <span id = 'email'></span></li>
-	  			<li>Contact: <span id = 'phone'></span></li>
-	  			<li>Country: <span id = 'country'></span></li>
+	            <li><b>Email    : </b><span id = 'email'></span></li>
+	  			<li><b>Contact  : </b><span id = 'phone'></span></li>
+	  			<li><b>Country  : </b><span id = 'country'></span></li>
 	        </ul>
 	    </div>
 	    <div class="actions">
@@ -258,7 +254,7 @@
   
   <div class="reservation-form">
   	
-        <h2>Schedule Booking</h2>
+        <h2>Schedule Service</h2>
         <form method="post" id="contactForm" name="contactForm">
           
           <div class="row">
@@ -268,21 +264,19 @@
             </div>
             <div class="form-group">
                 <label for="time">Time:</label>
-                <input type="time" id="time" name="time" required>
+                <select id="time" name="time" required>
+                    <option selected>Choose...</option>
+                    <option value="10 AM">10 AM</option>
+                    <option value="11 AM">11 AM</option>
+                    <option value="12 PM">12 PM</option>
+                </select>
             </div>
           </div>
           
           <div class="row">           
             <div class="form-group">
                 <label for="vehicle">Vehicle:</label>
-                <select id="vehicle" name="vehicle" required>
-					<option selected>Choose...</option>
-					<option value="AD-011"> Suzuki-Alto(2020)</option>
-					<option value="BC-022">Dolphin(2011)</option>
-					<option value="FGE-004">Suzuki-WagonR(2015)</option>
-					<option value="CQA-084">Toyota-Prius(2012)</option>
-					<option value="AAA-015">Honda-Fit(2020) </option>
-				</select>
+                <input type="text" id="vehicle" name="vehicle" placeholder="Enter the vehicle number" required>
             </div>
             <div class="form-group">
                 <label for="location">Location:</label>
@@ -341,7 +335,7 @@
     
     <section id = "history">
 	<div class="select-history">
-		<h2>See the Reservations. Click below</h2>
+		<h2>Your Reservations</h2>
 	</div>
 	
 	<div class="foroms">

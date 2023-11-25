@@ -51,7 +51,7 @@
             var client_secret = '<%= properties.getProperty("client_secret") %>';
            
             var redirect_uri =  '<%= properties.getProperty("baseurl") %>' + '/RentX_Vehicle_Booking_App/authorize.jsp';
-          	//console.log(redirect_uri);
+          	
 
 
             // Define the request body parameters
@@ -81,9 +81,7 @@
                    	localStorage.setItem('access_token', access_token);
                    	localStorage.setItem('id_token', id_token);
             	    window.location.href = "pages/home.jsp";
-            	    
-                   	
-            	    
+            	        
             	    
                 })	
                 .fail(function (error) {
@@ -91,8 +89,7 @@
                 	console.error('Error:', error);
                 	window.location.href = "../login.jsp";
                 	});
-
-                
+  
         }
 
         // Call the function to make the POST request

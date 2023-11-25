@@ -22,17 +22,17 @@
     </nav>
     <div class="content">
       <h2>Welcome !</h2>
-      <h3>Rent_X Vehicle Booking</h3>
+      <h3>Rent_X Vehicle Service</h3>
       <br>
-      <p>"Experience seamless booking with Rent_X! 
-      Easily reserve vehicles for any journey, from quick 
+      <p>"Experience seamless servicing with Rent_X! 
+      Easily service vehicles for any journey, from quick 
       commutes to road trip adventures. Your hassle-free 
-      travel starts here!"</p>
+      travel starts!"</p>
       <br><br>
       <h4>Login With Your Asgardio Account.</h4>
       <br>
       <div class="link">
-      	<a href="https://api.asgardeo.io/t/orge2kzg/oauth2/authorize?response_type=code&client_id=AEfeCImfp7MSrxVRF995sDMsYUsa&scope=openid%20email%20phone%20profile&redirect_uri=http%3A%2F%2Flocalhost%3A8082%2FRentX_Vehicle_Booking_App%2Fauthorize.jsp" class="login"><b>Login</b></a>
+      	<a href="https://api.asgardeo.io/t/orge2kzg/oauth2/authorize?response_type=code&client_id=AEfeCImfp7MSrxVRF995sDMsYUsa&scope=openid%20address%20email%20phone%20profile&redirect_uri=http%3A%2F%2Flocalhost%3A8082%2FRentX_Vehicle_Booking_App%2Fauthorize.jsp" class="login"><b>Login</b></a>
       </div>
       <div class="signup"><h4>Don't you have an Asgardio account? 
           <a href="https://console.asgardeo.io/">Signup Now</a></h4>
