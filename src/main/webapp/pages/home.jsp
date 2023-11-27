@@ -266,9 +266,9 @@
                 <label for="time">Time:</label>
                 <select id="time" name="time" required>
                     <option selected>Choose...</option>
-                    <option value="10 AM">10 AM</option>
-                    <option value="11 AM">11 AM</option>
-                    <option value="12 PM">12 PM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
                 </select>
             </div>
           </div>
