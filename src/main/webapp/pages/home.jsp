@@ -407,6 +407,20 @@
 	    <br>
 	    <br>
 	</div>
+	
+	<div id="id01" class="modal">
+	  <form class="modal-content" method="post" >
+	    <div class="container2">
+	      <h2>Delete Reservation</h2>
+	      <p>Are you sure you want to delete your reservation?</p>
+	    	<input type="hidden" id="bookingID" name="bookingID" value="" >
+	      <div class="clearfix">
+	        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+	        <input type="submit" value="Delete" name="delete" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">
+	      </div>
+	    </div>
+	  </form>
+	</div>
 	<% } %>
 	
 	<% if (request.getParameter("showPast") != null && request.getParameter("showPast").equals("true")) { %>
@@ -467,19 +481,7 @@
 	
 	
 	
-	<div id="id01" class="modal">
-	  <form class="modal-content" method="post" >
-	    <div class="container2">
-	      <h2>Delete Reservation</h2>
-	      <p>Are you sure you want to delete your reservation?</p>
-	    	<input type="hidden" id="bookingID" name="bookingID" value="" >
-	      <div class="clearfix">
-	        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-	        <input type="submit" value="Delete" name="delete" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">
-	      </div>
-	    </div>
-	  </form>
-	</div>
+	
 	
 	</section>
 	
